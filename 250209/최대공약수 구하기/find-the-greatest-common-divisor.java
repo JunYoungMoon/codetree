@@ -8,7 +8,7 @@ public class Main {
 
         int min = Math.min(a, b);
 
-        int answer = 0;
+        int answer = 1;
         for(int i = 1 ; i <= min / 2; i++){
             if(a % i == 0 && b % i ==0){
                 answer = i;
