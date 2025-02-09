@@ -7,7 +7,7 @@ public class Main {
         while(n > 0){
             int digit = n % 10;
 
-            if(digit % 3 == 0 && disit != 0){
+            if(digit % 3 == 0 && digit != 0){
                 return true;
             }
             n = n / 10;
