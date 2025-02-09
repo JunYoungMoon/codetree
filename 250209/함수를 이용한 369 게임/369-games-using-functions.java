@@ -3,9 +3,14 @@ import java.util.Scanner;
 public class Main {
 
     public static boolean containsMultipleOfThree(int n) {
-        if ((n % 10) % 3 == 0 || (n / 10) % 3 == 0) {
-            return true;
+        while(n > 0){
+            if ((n / 10) % 3 == 0 || (n % 10) % 3 == 0) {
+                return true;
+            }
+
+            n = n/10;
         }
+
         return false;
     }
 
