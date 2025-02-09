@@ -29,6 +29,10 @@ public class Main {
         int lenA = scanner.nextInt();
         int lenB = scanner.nextInt();
 
+        if(lenB > lenA){
+            System.out.println("No");
+        }
+
         int[] arrA = new int[lenA];
         int[] arrB = new int[lenB];
 
@@ -39,6 +43,7 @@ public class Main {
         scanner.nextLine();
 
         int sumB = 0;
+
         for (int i = 0; i < lenB; i++) {
             arrB[i] = scanner.nextInt();
             sumB = sumB + arrB[i];
