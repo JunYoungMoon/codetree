@@ -5,7 +5,7 @@ public class Main {
         int a = n / 10;
         int b = n % 10;
 
-        if(n % 2 == 0 && (a + b) % 10 == 0){
+        if(n % 2 == 0 && (a + b) % 5 == 0){
             return "Yes";
         }else{
             return "No";
