@@ -31,6 +31,7 @@ public class Main {
 
         if(lenB > lenA){
             System.out.println("No");
+            return;
         }
 
         int[] arrA = new int[lenA];
