@@ -24,7 +24,7 @@ public class Main {
         int cnt = 0;
 
         for(int i = A ; i <= B; i++){
-            if(isMagicNumber(i)){
+            if(isMagicMultipleOfThree(i)){
                 cnt++;
             }
         }
