@@ -3,6 +3,10 @@ import java.util.Scanner;
 public class Main {
 
     public static boolean hasMonthAndDate(int M, int D){
+        if (M < 1 || M > 12) {
+            return false;
+        }
+
         if(M == 2 && D > 28){
             return false;
         }
