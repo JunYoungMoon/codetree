@@ -5,7 +5,7 @@ public class Main {
     static int[] maxValueArr;
 
     public static int maxValue(int i) {
-        if(i == 1){
+        if(i == 0){
             return maxValueArr[i];
         }
 
