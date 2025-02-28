@@ -7,17 +7,15 @@ public class Main {
         int m = sc.nextInt();
         int k = sc.nextInt();
 
-        int[] peopleCount = new int[n + 1];
-        // int[] penalizedPerson = new int[m];
+        int[] personCount = new int[n + 1];
 
         int ans = -1;
         for (int i = 0; i < m; i++) {
-            // penalizedPerson[i] = sc.nextInt();
             int tmp = sc.nextInt();
 
-            peopleCount[tmp]++;
+            personCount[tmp]++;
 
-            if(peopleCount[tmp] >= k){
+            if(personCount[tmp] >= k){
                 ans = tmp;
                 break;
             }
