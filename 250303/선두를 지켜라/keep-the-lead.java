@@ -1,10 +1,11 @@
 import java.util.*;
 
 public class Main {
-
+    public static final int MAX_T = 1000000;
+    
     public static int n, m;
-    public static int[] posA = new int[10000 + 1];
-    public static int[] posB = new int[10000 + 1];
+    public static int[] posA = new int[MAX_T + 1];
+    public static int[] posB = new int[MAX_T + 1];
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
