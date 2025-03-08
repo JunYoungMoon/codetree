@@ -20,9 +20,7 @@ public class Main {
             } else if (charArray[i] == 'R') {
                 //시계 방향으로 회전
                 v = (v + 1) % 4;
-            }
-
-            if (charArray[i] == 'F') {
+            } else if (charArray[i] == 'F') {
                 //nx,ny 증가
                 nx = nx + dx[v];
                 ny = ny + dy[v];
