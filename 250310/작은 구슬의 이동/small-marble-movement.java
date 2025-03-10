@@ -25,16 +25,19 @@ public class Main {
 
         //처음 방향 설정
         int moveDir = getDir(c);
-        int nx = x + dx[moveDir];
-        int ny = y + dy[moveDir];
-
+        int nx = 0;
+        int ny = 0;
         for (int i = 0; i < T; i++) {
-            //방향대로 전진
-            nx = nx + dx[moveDir];
-            ny = ny + dy[moveDir];
-            //벽에 부딫히는 경우
-            if (nx < 0 || nx >= N || ny < 0 || ny >= N) {
-                //방향만 전환
+            nx = x + dx[moveDir];
+            ny = y + dy[moveDir];
+
+            //미래의 값으로 전진해봄
+            if (nx >= 0 && nx < N && ny >= 0 && ny < N) {
+                // 전진이 된다면 이동
+                x = nx;
+                y = ny;
+            } else {
+                //벽에 부딫히는 경우 방향만 전환
                 moveDir = 3 - moveDir;
             }
         }
