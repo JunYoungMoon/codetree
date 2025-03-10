@@ -1,19 +1,11 @@
 import java.util.Scanner;
 
 public class Main {
+    public static final int ASCII_NUM = 128;
+    public static int[] mapper = new int[ASCII_NUM];
+
     public static int[] dx = new int[]{0, 1, -1, 0};
     public static int[] dy = new int[]{1, 0, 0, -1};
-
-    public static int getDir(char a) {
-        if (a == 'R')
-            return 0;
-        else if (a == 'D')
-            return 1;
-        else if (a == 'U')
-            return 2;
-        else
-            return 3;
-    }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -23,13 +15,19 @@ public class Main {
         int y = scanner.nextInt() - 1;
         char c = scanner.next().charAt(0);
 
+        mapper['R'] = 0;
+        mapper['D'] = 1;
+        mapper['U'] = 2;
+        mapper['L'] = 3;
+
         //처음 방향 설정
-        int moveDir = getDir(c);
-        int nx = 0;
-        int ny = 0;
+        int moveDir = mapper[c];
+
         for (int i = 0; i < T; i++) {
-            nx = x + dx[moveDir];
-            ny = y + dy[moveDir];
+            //nx,ny는 미래의 이동할 값
+            //x,y가 현재의 값
+            int nx = x + dx[moveDir];
+            int ny = y + dy[moveDir];
 
             //미래의 값으로 전진해봄
             if (nx >= 0 && nx < N && ny >= 0 && ny < N) {
@@ -42,6 +40,6 @@ public class Main {
             }
         }
 
-        System.out.println((nx + 1) + " " + (ny + 1));
+        System.out.println((x + 1) + " " + (y + 1));
     }
 }
