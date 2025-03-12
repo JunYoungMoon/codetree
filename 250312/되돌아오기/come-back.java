@@ -8,6 +8,7 @@ public class Main {
     public static int count = 0;
     public static int nx = 0;
     public static int ny = 0;
+    public static int ans = -1;
 
     public static boolean move(int index, int dist){
         for (int i = 0; i < dist; i++) {
@@ -17,6 +18,7 @@ public class Main {
             count++;
 
             if(nx == 0 && ny == 0){
+                ans = count;
                 return true;
             }
         }
@@ -49,8 +51,7 @@ public class Main {
             if(done){
                 break;
             }
-
         }
-        System.out.println(count);
+        System.out.println(ans);
     }
 }
