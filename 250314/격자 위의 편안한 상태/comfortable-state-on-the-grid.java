@@ -11,7 +11,7 @@ public class Main {
         int n = sc.nextInt();
         int m = sc.nextInt();
 
-        int[][] arr = new int[n][n];
+        int[][] arr = new int[100][100];
         int[] ans = new int[m];
 
         for (int i = 0; i < m; i++) {
