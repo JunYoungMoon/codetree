@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Main {
@@ -11,7 +12,7 @@ public class Main {
         int n = sc.nextInt();
         int m = sc.nextInt();
 
-        int[][] arr = new int[100][100];
+        int[][] arr = new int[n][n];
         int[] ans = new int[m];
 
         for (int i = 0; i < m; i++) {
@@ -29,11 +30,10 @@ public class Main {
                 if (nx >= 0 && nx < n && ny >= 0 && ny < n && arr[nx][ny] == 1) {
                     count++;
 
-                    if (count == 3) {
-                        ans[i] = 1;
-                    } else {
-                        ans[i] = 0;
-                    }
+                    
+                }
+                if (count == 3) {
+                    ans[i] = 1;
                 }
             }
         }
