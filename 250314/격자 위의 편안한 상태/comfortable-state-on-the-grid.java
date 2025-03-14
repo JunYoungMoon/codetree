@@ -31,6 +31,8 @@ public class Main {
 
                     if (count == 3) {
                         ans[i] = 1;
+                    } else {
+                        ans[i] = 0;
                     }
                 }
             }
