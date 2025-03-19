@@ -29,7 +29,6 @@ public class Main {
             for (int j = 0; j < n; j++) {
                 grid[i][j] = sc.nextInt();
             }
-            sc.nextLine();
         }
 
         int ans = grid[x][y];
