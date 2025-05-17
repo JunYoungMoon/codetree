@@ -22,6 +22,7 @@ def bfs():
 q= deque()
 visited[0][0] =1
 q.append((0,0))
+bfs()
 print(visited[n-1][m-1])
 
 
