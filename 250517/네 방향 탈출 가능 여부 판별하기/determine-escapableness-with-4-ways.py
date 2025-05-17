@@ -11,9 +11,10 @@ def bfs():
         for i in range(4): 
             nx = x + dirs[i][0]  #1 0 -1 0
             ny = y + dirs[i][1]  #0 1  0 -1
-            if 0 <=nx < n and 0<= ny < m and graph[nx][ny] !=0:  # 갈 수 있는 곳 
+            if 0 <=nx < n and 0<= ny < m and not visited[nx][ny] and graph[nx][ny] !=0:  # 갈 수 있는 곳 
                 q.append((nx,ny))
                 visited[nx][ny] =1
+
 
 
 
@@ -21,7 +22,6 @@ def bfs():
 q= deque()
 visited[0][0] =1
 q.append((0,0))
-bfs()
 print(visited[n-1][m-1])
 
 
