@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int[] dx = {0, 1, -1, 0};
-        int[] dy = {-1, 0, 0, 1};
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, -1, 1};
 
         int n = sc.nextInt();
         int x = sc.nextInt() - 1;
