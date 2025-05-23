@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main2 {
+public class Main {
     public static int k;
     public static int n;
     public static List<Integer> list = new ArrayList<>();
