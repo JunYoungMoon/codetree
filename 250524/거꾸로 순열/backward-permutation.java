@@ -13,7 +13,7 @@ public class Main {
         n = sc.nextInt();
         visited = new boolean[n + 1];
 
-        choose(3);
+        choose(n);
     }
 
     public static void choose(int currNum) {
