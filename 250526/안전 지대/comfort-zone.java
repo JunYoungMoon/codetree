@@ -28,7 +28,7 @@ public class Main {
         }
 
         int maxZone = 0;
-        int answerK = 0;
+        int answerK = 1;
 
         for (int k = 1; k < maxHeight ; k++) {
             int zoneCount = 0;
