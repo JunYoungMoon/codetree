@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static int[][] arr;
-    public static int[][] visited;
+    public static boolean[][] visited;
     public static int n, maxBlockSize, blockCnt, burstBlockCnt;
     public static int[] dx = {-1, 1, 0, 0};
     public static int[] dy = {0, 0, -1, 1};
@@ -13,7 +13,7 @@ public class Main {
         n = sc.nextInt();
 
         arr = new int[n][n];
-        visited = new int[n][n];
+        visited = new boolean[n][n];
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -23,13 +23,15 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                blockCnt = 1;
-                DFS(i, j);
-                if (blockCnt >= 4) {
-                    burstBlockCnt++;
-                }
-                if (blockCnt > maxBlockSize) {
-                    maxBlockSize = blockCnt;
+                if(!visited[i][j] && arr[i][j] > 0){
+                    visited[i][j] = true;
+                    blockCnt = 1;
+                    DFS(i, j);
+                    if (blockCnt >= 4) {
+                        burstBlockCnt++;
+                    }
+
+                    maxBlockSize = Math.max(blockCnt, maxBlockSize);
                 }
             }
         }
@@ -37,13 +39,12 @@ public class Main {
     }
 
     public static void DFS(int x, int y) {
-        visited[x][y] = 1;
-
         for (int i = 0; i < 4; i++) {
             int nextX = x + dx[i];
             int nextY = y + dy[i];
 
             if (canGo(nextX, nextY, x, y)) {
+                visited[x][y] = true;
                 blockCnt++;
                 DFS(nextX, nextY);
             }
@@ -57,7 +58,7 @@ public class Main {
         if (arr[currX][currY] != arr[nextX][nextY]) {
             return false;
         }
-        if (visited[nextX][nextY] == 1) {
+        if (visited[nextX][nextY]) {
             return false;
         }
 
