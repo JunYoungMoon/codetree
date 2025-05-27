@@ -1,3 +1,5 @@
+package com.mjyAfter.mjy20250527;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -48,8 +50,6 @@ public class Main {
             int x = currPoint.x;
             int y = currPoint.y;
 
-            visited[x][y] = true;
-
             if (x == n - 1 && y == m - 1) {
                 return 1;
             }
@@ -59,6 +59,7 @@ public class Main {
                 int nextY = y + dy[i];
 
                 if (canGo(nextX, nextY)) {
+                    visited[x][y] = true;
                     queue.offer(new Point(nextX, nextY));
                 }
             }
