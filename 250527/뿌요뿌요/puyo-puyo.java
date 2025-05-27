@@ -44,7 +44,7 @@ public class Main {
             int nextY = y + dy[i];
 
             if (canGo(nextX, nextY, x, y)) {
-                visited[x][y] = true;
+                visited[nextX][nextY] = true;
                 blockCnt++;
                 DFS(nextX, nextY);
             }
