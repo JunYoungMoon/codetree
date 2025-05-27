@@ -57,7 +57,7 @@ public class Main {
                 int nextY = y + dy[i];
 
                 if (canGo(nextX, nextY)) {
-                    visited[x][y] = true;
+                    visited[nextX][nextY] = true;
                     queue.offer(new Point(nextX, nextY));
                 }
             }
