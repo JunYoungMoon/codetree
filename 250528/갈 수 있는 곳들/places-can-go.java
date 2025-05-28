@@ -40,6 +40,10 @@ public class Main {
             s2 = sc.nextInt() - 1;
 
             if (!visited[s1][s2] && grid[s1][s2] == 0) {
+                if (s1 == 0 && s2 == 0) {
+                    answerCnt++;
+                    break;
+                }
                 queue.offer(new Point(s1, s2));
                 BFS();
             }
