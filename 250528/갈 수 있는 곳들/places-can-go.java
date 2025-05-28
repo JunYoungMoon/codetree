@@ -2,7 +2,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-
 class Point {
     int x, y;
 
@@ -19,7 +18,6 @@ public class Main {
     public static boolean[][] visited;
     public static int[] dx = {-1, 1, 0, 0};
     public static int[] dy = {0, 0, -1, 1};
-    public static int answerCnt;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -39,17 +37,22 @@ public class Main {
             s1 = sc.nextInt() - 1;
             s2 = sc.nextInt() - 1;
 
-            if (!visited[s1][s2] && grid[s1][s2] == 0) {
-                if (s1 == 0 && s2 == 0) {
-                    answerCnt++;
-                    break;
-                }
-                queue.offer(new Point(s1, s2));
-                BFS();
-            }
+            queue.offer(new Point(s1, s2));
+            visited[s1][s2] = true;
         }
 
-        System.out.println(answerCnt);
+        BFS();
+
+        int ansCnt = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if(visited[i][j]){
+                    ansCnt++;
+                }
+            }
+        }
+        System.out.println(ansCnt);
     }
 
     public static void BFS() {
@@ -63,7 +66,6 @@ public class Main {
                 int nextY = currY + dy[i];
 
                 if (canGo(nextX, nextY)) {
-                    answerCnt++;
                     visited[nextX][nextY] = true;
                     queue.offer(new Point(nextX, nextY));
                 }
