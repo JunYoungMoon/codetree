@@ -69,7 +69,7 @@ public class Main {
             }
         }
 
-        System.out.println(currCell.x + 1 + " " + currCell.y + 1);
+        System.out.println((currCell.x + 1) + " " + (currCell.y + 1));
     }
 
     public static void initializeVisited() {
