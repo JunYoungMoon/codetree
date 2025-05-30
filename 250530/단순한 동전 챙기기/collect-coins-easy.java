@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 class Pair {
     int x, y;
 
@@ -11,7 +7,7 @@ class Pair {
     }
 }
 
-public class Main {
+public class Main2 {
     public static int COIN_NUM = 9;
     public static List<Pair> coinList = new ArrayList<>();
     public static List<Pair> selectCoinList = new ArrayList<>();
@@ -44,7 +40,7 @@ public class Main {
             }
         }
 
-        for (int i = 0; i < COIN_NUM; i++) {
+        for (int i = 1; i <= COIN_NUM; i++) {
             for (int j = 0; j < n; j++) {
                 for (int k = 0; k < n; k++) {
                     if (grid[j][k] == i + '0') {
