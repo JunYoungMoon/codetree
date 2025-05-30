@@ -7,7 +7,7 @@ class Pair {
     }
 }
 
-public class Main2 {
+public class Main {
     public static int COIN_NUM = 9;
     public static List<Pair> coinList = new ArrayList<>();
     public static List<Pair> selectCoinList = new ArrayList<>();
