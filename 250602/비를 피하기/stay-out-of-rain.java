@@ -45,66 +45,39 @@ public class Main {
             }
         }
 
+        for (int i = 0; i < arriveList.size(); i++) {
+            int x = arriveList.get(i).x;
+            int y = arriveList.get(i).y;
+
+            queue.offer(new Pair(x, y));
+            visited[x][y] = true;
+        }
+
+        BFS();
+
         for (int i = 0; i < peopleList.size(); i++) {
-            visitedInit();
-            stepInit();
-
             Pair peoplePair = peopleList.get(i);
-            queue.offer(new Pair(peoplePair.x, peoplePair.y));
-            visited[peoplePair.x][peoplePair.y] = true;
+            int x = peoplePair.x;
+            int y = peoplePair.y;
 
-            BFS();
-
-            ans[peoplePair.x][peoplePair.y] = minArrive();
+            if (step[x][y] != 0) {
+                ans[x][y] = step[x][y];
+            } else {
+                ans[x][y] = -1;
+            }
         }
 
         printAns();
     }
 
-    public static void printAns(){
+    public static void printAns() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.print(ans[i][j] + " ");
             }
             System.out.println();
         }
-
         System.out.println();
-    }
-
-    public static int minArrive() {
-        int min = Integer.MAX_VALUE;
-
-        for (int i = 0; i < arriveList.size(); i++) {
-            Pair arrivePair = arriveList.get(i);
-            int temp;
-
-            if (visited[arrivePair.x][arrivePair.y]) {
-                temp = step[arrivePair.x][arrivePair.y];
-            } else {
-                temp = -1;
-            }
-
-            min = Math.min(min, temp);
-        }
-
-        return min;
-    }
-
-    public static void visitedInit() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                visited[i][j] = false;
-            }
-        }
-    }
-
-    public static void stepInit() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                step[i][j] = 0;
-            }
-        }
     }
 
     public static void BFS() {
