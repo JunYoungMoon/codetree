@@ -55,16 +55,16 @@ public class Main {
     }
 
     public static void combination(int idx, int cnt) {
-        if (idx == wallList.size()) {
-            return;
-        }
-
         if (k == cnt) {
             BFS();
 
             if (visited[r2][c2]) {
                 ans = Math.min(ans, step[r2][c2]);
             }
+            return;
+        }
+
+        if (idx == wallList.size()) {
             return;
         }
 
