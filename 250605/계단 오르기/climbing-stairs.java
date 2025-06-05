@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main2 {
+public class Main {
     public static int n;
     public static int mod = 10007;
     public static int[] dp = new int[1000];
