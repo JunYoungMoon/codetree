@@ -1,15 +1,14 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main2 {
     public static int n;
     public static int mod = 10007;
+    public static int[] dp = new int[1000];
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         n = sc.nextInt();
-
-        int[] dp = new int[n + 1];
 
         dp[0] = 1;
         dp[1] = 0;
