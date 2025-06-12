@@ -1,5 +1,3 @@
-package com.mjyAfter.mjy20250612;
-
 import java.util.Scanner;
 
 class Grid {
