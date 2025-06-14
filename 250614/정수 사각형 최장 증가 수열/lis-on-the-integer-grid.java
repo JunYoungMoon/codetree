@@ -1,77 +1,192 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
+class Cell {
+    private final int x, y, value;
 
-class Cell /*implements Comparable<Cell> */ {
-    int x, y, num;
-
-    public Cell(int x, int y, int num) {
+    public Cell(int x, int y, int value) {
         this.x = x;
         this.y = y;
-        this.num = num;
+        this.value = value;
     }
 
-//    @Override
-//    public int compareTo(Cell c) {
-//        return this.num - c.num;
-//    }
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Cell(%d, %d, %d)", x, y, value);
+    }
 }
 
-public class Main {
+class Grid {
+    private final int[][] matrix;
+    private final int size;
+    private static final int[] DX = {-1, 1, 0, 0};
+    private static final int[] DY = {0, 0, -1, 1};
 
-    public static int n,ans;
-    public static int[][] grid, dp;
-    public static int[] dx = {-1, 1, 0, 0};
-    public static int[] dy = {0, 0, -1, 1};
+    public Grid(int[][] matrix) {
+        this.size = matrix.length;
+        this.matrix = new int[size][size];
 
-    public static ArrayList<Cell> cells = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            System.arraycopy(matrix[i], 0, this.matrix[i], 0, size);
+        }
+    }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public int getSize() {
+        return size;
+    }
 
-        n = sc.nextInt();
-        grid = new int[n][n];
-        dp = new int[n][n];
+    public int getValue(int x, int y) {
+        if (!isValidPosition(x, y)) {
+            throw new IndexOutOfBoundsException("Invalid position (" + x + ", " + y + ")");
+        }
+        return matrix[x][y];
+    }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                grid[i][j] = sc.nextInt();
-                dp[i][j] = 1;
+    public boolean isValidPosition(int x, int y) {
+        return x >= 0 && y >= 0 && x < size && y < size;
+    }
+
+    public List<Cell> getAllCells() {
+        List<Cell> cells = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                cells.add(new Cell(i, j, matrix[i][j]));
             }
         }
+        return cells;
+    }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                cells.add(new Cell(i, j, grid[i][j]));
+    public List<Cell> getNeighbors(int x, int y) {
+        List<Cell> neighbors = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            int nx = x + DX[i];
+            int ny = y + DY[i];
+            if (isValidPosition(nx, ny)) {
+                neighbors.add(new Cell(nx, ny, matrix[nx][ny]));
             }
         }
+        return neighbors;
+    }
+}
 
-        cells.sort(Comparator.comparing(cell -> cell.num));
+class DynamicProgrammingTable {
+    private final int[][] dp;
+    private final int size;
 
-        for (int i = 0; i < cells.size(); i++) {
-            int x = cells.get(i).x;
-            int y = cells.get(i).y;
+    public DynamicProgrammingTable(int size) {
+        this.size = size;
+        this.dp = new int[size][size];
+    }
 
-            for (int j = 0; j < 4; j++) {
-                int nx = x + dx[j];
-                int ny = y + dy[j];
+    public int getValue(int x, int y) {
+        return dp[x][y];
+    }
 
-                if (inRange(nx, ny) && grid[nx][ny] > grid[x][y]) {
-                    if (dp[nx][ny] <= dp[x][y]) {
-                        dp[nx][ny] = dp[x][y] + 1;
+    public void setValue(int x, int y, int value) {
+        dp[x][y] = value;
+    }
 
-                        ans = Math.max(ans, dp[nx][ny]);
-                    }
+    public int getMaxValue() {
+        int max = 0;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                max = Math.max(max, dp[i][j]);
+            }
+        }
+        return max;
+    }
+}
+
+class LongestIncreasingPathFinder {
+    private final Grid grid;
+    private final DynamicProgrammingTable dpTable;
+
+    public LongestIncreasingPathFinder(Grid grid) {
+        this.grid = grid;
+        this.dpTable = new DynamicProgrammingTable(grid.getSize());
+    }
+
+    public int findLongestPath() {
+        List<Cell> cells = grid.getAllCells();
+
+        cells.sort(Comparator.comparing(Cell::getValue));
+
+        for (Cell cell : cells) {
+            updateDPForCell(cell);
+        }
+
+        return dpTable.getMaxValue();
+    }
+
+    private void updateDPForCell(Cell cell) {
+        int x = cell.getX();
+        int y = cell.getY();
+        int currentValue = cell.getValue();
+
+        List<Cell> neighbors = grid.getNeighbors(x, y);
+
+        for (Cell neighbor : neighbors) {
+            int nx = neighbor.getX();
+            int ny = neighbor.getY();
+
+            int neighborValue = neighbor.getValue();
+
+            if (neighborValue > currentValue) {
+                int currentDP = dpTable.getValue(x, y);
+                int neighborDP = dpTable.getValue(nx, ny);
+
+                if (neighborDP <= currentDP) {
+                    dpTable.setValue(nx, ny, currentDP + 1);
                 }
             }
         }
+    }
+}
 
-        System.out.println(ans);
+class InputProcessor {
+    private final Scanner scanner;
+
+    public InputProcessor(){
+        this.scanner = new Scanner(System.in);
     }
 
-    public static boolean inRange(int x, int y) {
-        return x >= 0 && y >= 0 && x < n && y < n;
+    public Grid readGrid(){
+        int n = scanner.nextInt();
+        int[][] matrix = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j]  = scanner.nextInt();
+            }
+        }
+
+        return new Grid(matrix);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        InputProcessor inputProcessor = new InputProcessor();
+
+        Grid grid = inputProcessor.readGrid();
+
+        LongestIncreasingPathFinder pathFinder = new LongestIncreasingPathFinder(grid);
+        int result = pathFinder.findLongestPath();
+
+        System.out.println(result);
     }
 }
