@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+package com.mjyAfter.mjy20250614;
+
+
+import java.util.*;
 
 class Cell {
     private final int x, y, value;
@@ -90,6 +90,12 @@ class DynamicProgrammingTable {
     public DynamicProgrammingTable(int size) {
         this.size = size;
         this.dp = new int[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                dp[i][j] = 1;
+            }
+        }
     }
 
     public int getValue(int x, int y) {
@@ -160,17 +166,17 @@ class LongestIncreasingPathFinder {
 class InputProcessor {
     private final Scanner scanner;
 
-    public InputProcessor(){
+    public InputProcessor() {
         this.scanner = new Scanner(System.in);
     }
 
-    public Grid readGrid(){
+    public Grid readGrid() {
         int n = scanner.nextInt();
         int[][] matrix = new int[n][n];
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                matrix[i][j]  = scanner.nextInt();
+                matrix[i][j] = scanner.nextInt();
             }
         }
 
