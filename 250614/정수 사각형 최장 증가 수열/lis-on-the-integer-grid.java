@@ -1,6 +1,3 @@
-package com.mjyAfter.mjy20250614;
-
-
 import java.util.*;
 
 class Cell {
